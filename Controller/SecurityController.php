@@ -15,8 +15,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                //$this->redirect('home');
-                echo $this->renderView('home.html.twig', ['user_id' => $_SESSION[user_id]]);
+                $this->redirect('home');
             }
             else {
                 $error = "Invalid username or password";

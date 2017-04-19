@@ -33,4 +33,27 @@ class ArticleManager
         ]);
         $this->DBManager->do_query_db($query,$d);
     }
+    
+    public function getAllArticles(){
+        $data = $this->DBManager->findAll("SELECT * FROM articles");
+        return $data;
+    }
+    
+    public function articleCheck($id_article)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE id = :id",
+        ['id' => $id_article]);
+        if(count($data['id'])!=0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
+    public function getArticle($id_article){
+        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE id = :id",
+        ['id' => $id_article]);
+        return $data;
+    }
 }

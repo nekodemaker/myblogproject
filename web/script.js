@@ -3,6 +3,8 @@ window.onload = function () {
     var formLogin = document.forms["login-form"];
     var formRegister = document.forms["register-form"];
     var formCreateArticle = document.forms["create-article-form"];
+    var buttonsShowArticle = document.querySelectorAll(".show-article");
+    console.log(buttonsShowArticle);
 
     function submitOnLogin() {
         formLogin.onsubmit = function () {
@@ -40,11 +42,26 @@ window.onload = function () {
         };
     };
 
+    function clickOnShowArticle() {
+      /*  for (var i = 0; i < buttonsShowArticle.length; i++) {
+            buttonsShowArticle[i].onclick = function () {
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("ok");
+                    }
+                };
+                xmlhttp.open("POST", "?action=showArticle&id_article="+this.id, true);
+                xmlhttp.send();
+            }.bind(i);
+        }*/
+    };
     if (formLogin != undefined)
         submitOnLogin();
     if (formRegister != undefined)
         submitOnRegister();
     if (formCreateArticle != undefined)
         submitOnCreateArticle();
+    if (buttonsShowArticle != undefined)
+        clickOnShowArticle();
 };
 

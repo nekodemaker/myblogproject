@@ -4,4 +4,13 @@
 
 <h1>Hello {{ name }} !</h1>
 LISTE DES ARTICLES
+{% for article in articles %}
+<div class="article">
+    Titre:{{ article.title_article }}<br/>
+    Auteur:{{ article.author_article }}<br/>
+    Texte:{{ article.text_article }}<br/>
+    Date:{{ article.date_article }}<br/>
+    <a href="?action=showArticle&id_article={{article.id}}" class="show-article">Voir l'article</a>
+</div><br/>
+{% endfor %}
 {% endblock %}

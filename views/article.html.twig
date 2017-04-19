@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+ARTICLE
+{% if articleToShow is defined and articleToShow is not empty %}
+Id de l'article :{{articleToShow.id}}<br/>
+titre de l'article :{{articleToShow.title_article}}<br/>
+Auteur de l'article :{{articleToShow.author_article}}<br/>
+Texte de l'article :{{articleToShow.text_article}}<br/>
+Date de l'article :{{articleToShow.date_article}}<br/>
+{% endif %}
+{% endblock %}

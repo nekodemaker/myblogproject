@@ -29,4 +29,24 @@ class ArticleController extends BaseController
         }
     }
     
+    public function showArticleAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'GET')
+        {
+            $manager = ArticleManager::getInstance();
+            if ($manager->articleCheck($_GET['id_article']))
+            {
+                $articleToShow=$manager->getArticle($_GET['id_article']);
+                echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow]);
+                //$this->redirect('home');
+            }
+            else {
+                $error = "That article doesn't exist";
+            }
+        }else{
+            $error = "Not POST";
+        }
+        echo $this->renderView('article.html.twig', ['error' => $error]);
+    }
 }
