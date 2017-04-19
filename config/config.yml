@@ -4,6 +4,7 @@ routes:
     login: 'Security:login'
     logout: 'Security:logout'
     register: 'Security:register'
+    createArticle: 'Article:createArticle'
 
 defaut_route: 'home'
 

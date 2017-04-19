@@ -82,6 +82,7 @@ class UserManager
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
+        $_SESSION['username'] = $data['username'];
         return true;
     }
 }

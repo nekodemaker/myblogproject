@@ -15,7 +15,8 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
+                //$this->redirect('home');
+                echo $this->renderView('home.html.twig', ['user_id' => $_SESSION[user_id]]);
             }
             else {
                 $error = "Invalid username or password";
@@ -23,13 +24,13 @@ class SecurityController extends BaseController
         }
         echo $this->renderView('login.html.twig', ['error' => $error]);
     }
-
+    
     public function logoutAction()
     {
         session_destroy();
         echo $this->redirect('login');
     }
-
+    
     public function registerAction()
     {
         $error = '';
@@ -43,7 +44,7 @@ class SecurityController extends BaseController
             }
             else {
                 $error = "Invalid data";
-            }    
+            }
         }
         echo $this->renderView('register.html.twig', ['error' => $error]);
     }

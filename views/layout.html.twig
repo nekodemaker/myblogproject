@@ -8,12 +8,20 @@
     </head>
     <body>
         <header>
-            Awesome header
+            METTRE BANNIERE
         </header>
         <nav>
             <ul>
                 <li><a href="?action=home">Home</a></li>
-                <li><a href="?action=about">About Us</a></li>
+                {% if user_id is defined and user_id is not empty %}
+                <li><a href="?action=logout">Logout</a></li>
+                <li><a href="?action=createArticle">Create an article</a></li>
+                {% else %}
+                <li><a href="?action=login">Login</a></li>
+                <li><a href="?action=register">Register</a></li>
+                {% endif %}
+
+
             </ul>
         </nav>
         {% if error is defined and error is not empty %}
@@ -22,6 +30,6 @@
 
         {% block content %}{% endblock %}
         
-        <footer>Even more awesome footer</footer>
+        <footer>METTRE UN FOOTER</footer>
     </body>
 </html>
