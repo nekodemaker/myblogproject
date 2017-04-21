@@ -4,7 +4,7 @@ window.onload = function () {
     var formRegister = document.forms["register-form"];
     var formCreateArticle = document.forms["create-article-form"];
     var buttonsShowArticle = document.querySelectorAll(".show-article");
-    var formCreateComment = document.forms["post-comment"];
+    var formCreateComment = document.forms["make-comment-form"];
     console.log(buttonsShowArticle);
 
     function submitOnLogin() {
@@ -31,7 +31,6 @@ window.onload = function () {
         };
     };
 
-
     function submitOnCreateArticle() {
         formCreateArticle.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
@@ -45,17 +44,17 @@ window.onload = function () {
     };
 
     function clickOnShowArticle() {
-        for (var i = 0; i < buttonsShowArticle.length; i++) {
-            buttonsShowArticle[i].onsubmit = function () {
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        console.log("ok");
-                    }
-                };
-                xmlhttp.open("POST", "?action=showArticle", true);
-                xmlhttp.send();
-            }.bind(i);
-        }
+        /*  for (var i = 0; i < buttonsShowArticle.length; i++) {
+              buttonsShowArticle[i].onclick = function () {
+                  xmlhttp.onreadystatechange = function () {
+                      if (this.readyState == 4 && this.status == 200) {
+                          console.log("ok");
+                      }
+                  };
+                  xmlhttp.open("POST", "?action=showArticle&id_article="+this.id, true);
+                  xmlhttp.send();
+              }.bind(i);
+          }*/
     };
 
     function submitOnCreateComment() {
@@ -64,13 +63,13 @@ window.onload = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     console.log("ok");
                 }
+
             };
             console.log("here");
             xmlhttp.open("POST", "?action=createComment", true);
             xmlhttp.send();
         };
     };
-
 
     if (formLogin != undefined)
         submitOnLogin();
@@ -83,4 +82,3 @@ window.onload = function () {
     if (formCreateComment != undefined)
         submitOnCreateComment();
 };
-

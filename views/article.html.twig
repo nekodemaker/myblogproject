@@ -1,13 +1,24 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-ARTICLE
+ARTICLE<br/> <br/> <br/> <br/> 
 {% if articleToShow is defined and articleToShow is not empty %}
 Id de l'article :{{articleToShow.id}}<br/>
 titre de l'article :{{articleToShow.title_article}}<br/>
 Auteur de l'article :{{articleToShow.author_article}}<br/>
 Texte de l'article :{{articleToShow.text_article}}<br/>
-Date de l'article :{{articleToShow.date_article}}<br/>
+Date de l'article :{{articleToShow.date_article}}<br/><br/>
+
 {% endif %}
+
+{% if name is defined and name is not empty %}
+Want to post a comment?<br/>
+<form name="post-comment" method="POST" action="?action=createComment">
+    <input type="hidden" name="author-comment" value={{name}}>
+    <input type="hidden" name="id-article" value={{articleToShow.id}}>
+    <input type="text" name="text-comment"><br/>
+    <input type="submit">
+</form><br/> <br/> 
+{% endif %}
+
 {% endblock %}

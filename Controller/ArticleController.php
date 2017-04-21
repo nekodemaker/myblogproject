@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\ArticleManager;
+use Model\CommentManager;
 
 class ArticleController extends BaseController
 {
@@ -23,7 +24,7 @@ class ArticleController extends BaseController
                     $error = "One of things is empty";
                 }
             }
-            echo $this->renderView('article_create.html.twig', ['error' => $error]);
+            echo $this->renderView('article_create.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
         }else{
             $this->redirect('home');
         }
@@ -31,6 +32,7 @@ class ArticleController extends BaseController
     
     public function showArticleAction()
     {
+        
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'GET')
         {
@@ -38,15 +40,21 @@ class ArticleController extends BaseController
             if ($manager->articleCheck($_GET['id_article']))
             {
                 $articleToShow=$manager->getArticle($_GET['id_article']);
-                echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow]);
+                echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username']]);
                 //$this->redirect('home');
             }
             else {
                 $error = "That article doesn't exist";
+                echo $this->renderView('article.html.twig', ['error' => $error]);
             }
         }else{
             $error = "Not POST";
         }
+    }
+    
+    public function createCommentAction()
+    {
+        $error = "That article doesn't exist";
         echo $this->renderView('article.html.twig', ['error' => $error]);
     }
 }

@@ -6,9 +6,8 @@ routes:
     register: 'Security:register'
     createArticle: 'Article:createArticle'
     showArticle: 'Article:showArticle'
-
+    createComment: 'Comment:createComment'
 defaut_route: 'home'
-
 db_config:
     name: 'blog_project'
     host: 'localhost'
