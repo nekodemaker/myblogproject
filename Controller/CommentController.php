@@ -28,4 +28,5 @@ class CommentController extends BaseController
             $this->redirect('home');
         }
     }
+
 }

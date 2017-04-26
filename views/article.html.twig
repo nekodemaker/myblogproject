@@ -8,8 +8,16 @@ titre de l'article :{{articleToShow.title_article}}<br/>
 Auteur de l'article :{{articleToShow.author_article}}<br/>
 Texte de l'article :{{articleToShow.text_article}}<br/>
 Date de l'article :{{articleToShow.date_article}}<br/><br/>
-
 {% endif %}
+
+COMMENTS<br/> <br/> <br/> <br/> 
+{% for comment in commentsToShow %}
+<div class="comment">
+Comment:{{comment.text_comment}}<br/> 
+Par: {{comment.author_comment}}<br/> 
+Le: {{comment.date_comment}}<br/> 
+</div><br/> <br/> 
+{% endfor %}
 
 {% if name is defined and name is not empty %}
 Want to post a comment?<br/>

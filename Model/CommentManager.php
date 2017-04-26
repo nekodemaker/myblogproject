@@ -34,8 +34,8 @@ class CommentManager
         $this->DBManager->do_query_db($query,$d);
     }
     
-    public function getAllComments(){
-        $data = $this->DBManager->findAll("SELECT count* FROM comments");
+    public function getComments(){
+        $data = $this->DBManager->findAll("SELECT * FROM comments");
         return $data;
     }
     
@@ -48,7 +48,6 @@ class CommentManager
         }else{
             return false;
         }
-        
     }
     
 }
