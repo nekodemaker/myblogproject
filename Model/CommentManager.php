@@ -34,8 +34,8 @@ class CommentManager
         $this->DBManager->do_query_db($query,$d);
     }
     
-    public function getComments(){
-        $data = $this->DBManager->findAll("SELECT * FROM comments");
+    public function getComments($id_article){
+        $data = $this->DBManager->findAllSecure("SELECT * FROM comments WHERE id_article=:id",['id' => $id_article]);
         return $data;
     }
     

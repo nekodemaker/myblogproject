@@ -42,6 +42,7 @@ class ArticleController extends BaseController
                 $managerComment=CommentManager::getInstance();
                 $commentsToShow = $managerComment->getComments($_GET['id_article']);
                 $articleToShow=$manager->getArticle($_GET['id_article']);
+                
                 if(!empty($_SESSION['username'])){
                     echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username'],'commentsToShow' => $commentsToShow]);    
                 }else{

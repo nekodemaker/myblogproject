@@ -16,6 +16,14 @@ COMMENTS<br/> <br/> <br/> <br/>
 Comment:{{comment.text_comment}}<br/> 
 Par: {{comment.author_comment}}<br/> 
 Le: {{comment.date_comment}}<br/> 
+{% if name is defined and name is not empty %}
+{% if name == comment.author_comment or name == articleToShow.author_article %}
+    <form name="show-profile-form" class="show-profile-form" method="POST" action="?action=deleteComment">
+    <input type="hidden" name="id-comment" value={{ comment.id }}>
+     <div class="deleteCommentLink">Delete Comment</div>
+    </form>
+{% endif %}
+{% endif %}
 </div><br/> <br/> 
 {% endfor %}
 
