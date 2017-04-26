@@ -6,8 +6,9 @@ window.onload = function () {
     var buttonsShowArticle = document.querySelectorAll(".show-article");
     var formCreateComment = document.forms["post-comment"];
     var formChangePassword = document.forms["change-password-form"];
-    console.log(buttonsShowArticle);
-
+    var formShowProfile = document.querySelectorAll(".show-profile-form");
+    var authorArticleLink = document.querySelectorAll(".showProfileLink");
+    console.log(formShowProfile);
     function submitOnLogin() {
         formLogin.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
@@ -85,17 +86,40 @@ window.onload = function () {
         };
     };
 
-    if (formLogin != undefined)
-        submitOnLogin();
-    if (formRegister != undefined)
-        submitOnRegister();
-    if (formCreateArticle != undefined)
-        submitOnCreateArticle();
-    if (buttonsShowArticle != undefined)
-        clickOnShowArticle();
-    if (formCreateComment != undefined)
-        submitOnCreateComment();
-    if (formChangePassword != undefined)
-        submitOnChangePassword();
-};
+    function submitOnShowProfile() {
+        for (var i = 0; i < authorArticleLink.length; i++) {
+            console.log(authorArticleLink[i].parentNode);
+            authorArticleLink[i].parentNode.onsubmit = function () {
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("ok");
+                    }
+                };
+                console.log("here");
+                xmlhttp.open("POST", "?action=showProfile", true);
+                xmlhttp.send();
+            };
+            //authorArticleLink[i].parentElement.submit();
+            authorArticleLink[i].onclick=function(){
+                console.log(authorArticleLink[i]);
+               this.parentElement.submit();
+            };
+        }
+        };
+        if (formLogin != undefined)
+            submitOnLogin();
+        if (formRegister != undefined)
+            submitOnRegister();
+        if (formCreateArticle != undefined)
+            submitOnCreateArticle();
+        if (buttonsShowArticle != undefined)
+            clickOnShowArticle();
+        if (formCreateComment != undefined)
+            submitOnCreateComment();
+        if (formChangePassword != undefined)
+            submitOnChangePassword();
+        if (formShowProfile != undefined){
+            submitOnShowProfile();
+        }
+    };
 

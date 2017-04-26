@@ -73,7 +73,34 @@ class SecurityController extends BaseController
                 $error = "Invalid Format";
             }
         }
-
+        
         echo $this->renderView('profile_edit.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
+    }
+    
+    public function showProfileAction()
+    {
+        
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            if ($manager->userProfileCheck($_POST['author-name']))
+            {
+                $user=$manager->userGetProfile($_POST['author-name']);
+                $profileToShow=[$user['username'],$user['email']];
+                if(!empty($_SESSION['username'])){
+                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'name' => $_SESSION['username']]);
+                }else{
+                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow]);
+                }
+                //$this->redirect('home');
+            }
+            else {
+                $error = "That profile doesn't exist";
+                echo $this->renderView('profile.html.twig', ['error' => $error]);
+            }
+        }else{
+            $error = "Not POST";
+        }
     }
 }

@@ -7,7 +7,11 @@ LISTE DES ARTICLES
 {% for article in articles %}
 <div class="article">
     Titre:{{ article.title_article }}<br/>
-    Auteur:{{ article.author_article }}<br/>
+
+    <form name="show-profile-form" class="show-profile-form" method="POST" action="?action=showProfile">
+    <input type="hidden" name="author-name" value={{ article.author_article }}>Auteur:
+     <div class="showProfileLink">{{article.author_article}}</div>
+    </form>
     Texte:{{ article.text_article }}<br/>
     Date:{{ article.date_article }}<br/>
 

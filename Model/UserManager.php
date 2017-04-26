@@ -90,7 +90,7 @@ class UserManager
         if(empty($data['old-password']) or empty($data['new-password'])){
             return false;
         }
-
+        
         $oldPassword=$data['old-password'];
         $user=$this->getUserById($_SESSION['user_id']);
         if ($user['password'] == $this->userHash($oldPassword))
@@ -110,5 +110,20 @@ class UserManager
         'userid'=> $_SESSION['user_id'],
         ];
         $res=$this->DBManager->do_query_db($query,$d);
+    }
+    
+    public function userProfileCheck($username)
+    {
+        if (empty($username))
+            return false;
+        $user = $this->getUserByUsername($username);
+        if (count($user) ==0)
+            return false;
+        return true;
+    }
+    
+    public function userGetProfile($username)
+    {
+        return $this->getUserByUsername($username);
     }
 }

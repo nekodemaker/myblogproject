@@ -5,6 +5,7 @@ routes:
     logout: 'Security:logout'
     register: 'Security:register'
     editProfile: 'Security:editProfile'
+    showProfile: 'Security:showProfile'
     changePassword: 'Security:changePassword'
     createArticle: 'Article:createArticle'
     showArticle: 'Article:showArticle'
