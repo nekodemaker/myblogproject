@@ -5,6 +5,7 @@ window.onload = function () {
     var formCreateArticle = document.forms["create-article-form"];
     var buttonsShowArticle = document.querySelectorAll(".show-article");
     var formCreateComment = document.forms["post-comment"];
+    var formChangePassword = document.forms["change-password-form"];
     console.log(buttonsShowArticle);
 
     function submitOnLogin() {
@@ -71,6 +72,18 @@ window.onload = function () {
         };
     };
 
+    function submitOnChangePassword() {
+        formCreateComment.onsubmit = function () {
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("ok");
+                }
+            };
+            console.log("here");
+            xmlhttp.open("POST", "?action=changePassword", true);
+            xmlhttp.send();
+        };
+    };
 
     if (formLogin != undefined)
         submitOnLogin();
@@ -82,5 +95,7 @@ window.onload = function () {
         clickOnShowArticle();
     if (formCreateComment != undefined)
         submitOnCreateComment();
+    if (formChangePassword != undefined)
+        submitOnChangePassword();
 };
 

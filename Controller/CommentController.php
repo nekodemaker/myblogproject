@@ -17,7 +17,7 @@ class CommentController extends BaseController
                 if ($manager->createCommentCheck($_POST))
                 {
                     $manager->createComment($_POST);
-                    $this->redirect('home');
+                    //$this->redirect('home');
                }
                else {
                    $error = "One of things is empty";

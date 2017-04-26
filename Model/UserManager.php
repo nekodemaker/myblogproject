@@ -1,7 +1,6 @@
 <?php
-
 namespace Model;
-
+error_reporting(~E_DEPRECATED);
 class UserManager
 {
     private $DBManager;
@@ -18,7 +17,7 @@ class UserManager
     {
         $this->DBManager = DBManager::getInstance();
     }
-
+    
     public function getUserById($id)
     {
         $id = (int)$id;
@@ -29,7 +28,7 @@ class UserManager
     public function getUserByUsername($username)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
-                                ['username' => $username]);
+        ['username' => $username]);
         return $data;
     }
     
@@ -52,13 +51,13 @@ class UserManager
     
     public function userRegister($data)
     {
-    $query="insert into `users`(`username`,`password`,`email`)values(:username,:password,:mail)";
-    $d=([
-    'username'=> $data['username'],
-    'password'=> $this->userHash($data['password']),
-    'mail'=> $data['email'],
-    ]);
-    $this->DBManager->do_query_db($query,$d);
+        $query="insert into `users`(`username`,`password`,`email`)values(:username,:password,:mail)";
+        $d=([
+        'username'=> $data['username'],
+        'password'=> $this->userHash($data['password']),
+        'mail'=> $data['email'],
+        ]);
+        $this->DBManager->do_query_db($query,$d);
     }
     
     public function userCheckLogin($data)
@@ -84,5 +83,32 @@ class UserManager
         $_SESSION['user_id'] = $data['id'];
         $_SESSION['username'] = $data['username'];
         return true;
+    }
+    
+    public function userCheckChangePassword($data)
+    {
+        if(empty($data['old-password']) or empty($data['new-password'])){
+            return false;
+        }
+
+        $oldPassword=$data['old-password'];
+        $user=$this->getUserById($_SESSION['user_id']);
+        if ($user['password'] == $this->userHash($oldPassword))
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function userChangePassword($data)
+    {
+        $newPassword=$data['new-password'];
+        $query="update `users` set `password`= :pass where `id`= :userid";
+        $d=[
+        'pass'=> $this->userHash($newPassword),
+        'userid'=> $_SESSION['user_id'],
+        ];
+        $res=$this->DBManager->do_query_db($query,$d);
     }
 }

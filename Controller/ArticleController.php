@@ -40,7 +40,11 @@ class ArticleController extends BaseController
             if ($manager->articleCheck($_GET['id_article']))
             {
                 $articleToShow=$manager->getArticle($_GET['id_article']);
-                echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username']]);
+                if(!empty($_SESSION['username'])){
+                    echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username']]);    
+                }else{
+                    echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow]);
+                }
                 //$this->redirect('home');
             }
             else {

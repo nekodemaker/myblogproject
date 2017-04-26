@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+PROFILE OF {{name}}
+<br/>
+Change password?
+<form name="change-password-form" method="POST" action="?action=changePassword">
+    Old Password : <input type="password" name="old-password"><br>
+    New Password : <input type="password" name="new-password"><br>
+    <input type="submit">
+</form>
+
+Change mail?
+<form name="change-mail-form" method="POST">
+    Old mail : <input type="email" name="old-mail"><br>
+    New mail : <input type="email" name="new-mail"><br>
+    <input type="submit">
+</form>
+{% endblock %}
