@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background: url('img/card.png');
 }
 #header{
     display:flex;
@@ -149,5 +150,17 @@ body{
 @media screen and (min-width: 1025px){
     #main article{
         width: 30%;
+    }
+    #logo{
+      margin: 0.5% 5%;
+    }
+    .link{
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+      width: 90%;
+    }
+    .link a{
+      margin: 0 10%;
     }
 }
