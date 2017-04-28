@@ -1,5 +1,137 @@
-body {
-  background-color: red;
-  color:white;
+body{
+    margin: 0;
+}
+#header{
+    display:flex;
+    flex-direction: column;
+
 }
 
+/* sidebar */
+#sidebar{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background-color: black;
+    width: 100%;
+}
+
+.buttonslide{
+    display: flex;
+    align-self: flex-start;
+}
+.close{
+    display: none;
+
+}
+.close img, .open img{
+    width: 40px;
+
+}
+#logo{
+    width: 60px;
+
+}
+.link{
+    display: none;
+    list-style-type: none;
+    width:75%;
+    justify-content: space-between;
+}
+.link img{
+    width: 70px;
+}
+/*End sidebar*/
+#sidebar nav {
+    width: 100%;
+}
+#header ul{
+    padding-left:0;
+
+    display: flex;
+    justify-content: space-around;
+}
+#header ul li{
+
+    list-style-type: none;
+    display: flex;
+}
+
+#main{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+}
+
+#main article{
+
+    display:flex;
+    align-self: center;
+    flex-direction: column;
+    width:100%;
+}
+
+#main article header{
+    align-self: center;
+    width:80%;
+}
+#main article header h1{
+    word-wrap:break-word;
+}
+#main article .content{
+    align-self: center;
+    width:90%;
+    margin: 1%;
+}
+
+#main article .content p{
+    word-wrap: break-word;
+}
+
+#main article figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left:0;
+    width:100%;
+}
+#main article figure img{
+    border: 1px solid black;
+    width:70%;
+    max-width:500px;
+}
+
+@media screen and (min-width:641px){
+    #main{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:center;
+        flex-direction: row;
+    }
+    #main article{
+        display:flex;
+        align-self: center;
+        flex-direction: column;
+        width:45%;
+        background-color: silver;
+        margin: 1% 1.5%;
+        border-radius: 7px;
+    }
+    #main article header{
+        width: 90%;
+    }
+    #sidebar{
+        flex-direction: row;
+    }
+    #logo{
+        margin: 2%;
+    }
+    .buttonslide{
+        display: none;
+    }
+    .link{
+        display: flex;
+        justify-content: space-around;
+        margin-left: 10%;
+    }
+}

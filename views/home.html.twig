@@ -3,19 +3,26 @@
 {% block content %}
 
 <h1>Hello {{ name }} !</h1>
-LISTE DES ARTICLES
-{% for article in articles %}
-<div class="article">
-    Titre:{{ article.title_article }}<br/>
-
-    <form name="show-profile-form" class="show-profile-form" method="POST" action="?action=showProfile">
-    <input type="hidden" name="author-name" value={{ article.author_article }}>Auteur:
-     <div class="showProfileLink">{{article.author_article}}</div>
-    </form>
-    Texte:{{ article.text_article }}<br/>
-    Date:{{ article.date_article }}<br/>
-
-    <a href="?action=showArticle&id_article={{article.id}}" class="show-article">Voir l'article</a>
-</div><br/>
+ <div id="main">
+ {% for article in articles %}
+    <article>
+        <header>
+            <h1><a href="" title="">{{ article.title_article }}</a></h1>
+            <form name="show-profile-form" class="show-profile-form" method="POST" action="?action=showProfile">
+                <input type="hidden" name="author-name" value={{ article.author_article }}>
+                <div class="showProfileLink">Publié par <cite>{{article.author_article}}</cite></div>
+            </form> le <time datetime="2012-03-30T13:37:00Z" pubdate="pubdate">{{ article.date_article }}</time>
+            </header>
+            <figure>
+                <img src="web/img/fairytailteam.png" alt="" />
+                <figcaption></figcaption>
+            </figure>
+            <div class="content">
+               <p>{{ article.text_article }}</p>
+            </div>
+            <footer>
+            </footer>
+        </article>
 {% endfor %}
-{% endblock %}
+    </div>
+    {% endblock %}

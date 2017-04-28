@@ -3,33 +3,63 @@
     <head>
         <meta charset="utf-8">
         <title>Blog manga</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="web/style.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="web/script.js"></script>
+            <script>
+        $(document).ready(function () {
+            $('.open').click(function openSidebar() {
+                $('.link').slideDown("slow").css({ "display": "flex" });
+                $('.open').css({ "display": "none" });
+                $('.close').css({ "display": "initial" });
+            });
+
+            $('.close').click(function closeSidebar() {
+                $('.link').hide();
+                $('.close').css({ "display": "none" });
+                $('.open').css({ "display": "initial" });
+            });
+        })
+    </script>
     </head>
     <body>
-        <header>
-            METTRE BANNIERE
-        </header>
-        <nav>
-            <ul>
-                <li><a href="?action=home">Home</a></li>
-                {% if name is defined and name is not empty %}
-                <li><a href="?action=logout">Logout</a></li>
-                <li><a href="?action=editProfile">Edit your profile</a></li>
-                <li><a href="?action=createArticle">Create an article</a></li>
-                {% else %}
-                <li><a href="?action=login">Login</a></li>
-                <li><a href="?action=register">Register</a></li>
-                {% endif %}
 
-
-            </ul>
+ <header id="header">
+        
+        <nav id="sidebar">
+            <img id="logo" src="web/img/Logo.png">
+            <div class="buttonslide">
+                <div class="open"><img src="web/img/Sidebar.png"></div>
+                <div class="close"><img src="web/img/Close.png"></div>
+            </div>
+            <div class="link">
+                <a href="?action=home"><img src="web/img/Home.png"></a>
+                 {% if name is defined and name is not empty %}
+                 <a href="?action=logout"><img src="web/img/Logout.png"></a>
+                 <a href="?action=editProfile"><img src="web/img/Profile.png"></a>
+                 <a href="?action=CreateArticle"><img src="web/img/Login.png"></a>
+                 {% else %}
+                <a href="?action=login"><img src="web/img/Login.png"></a>
+                <a href="?action=register"><img src="web/img/Register.png"></a>
+                 {% endif %}
+            </div>
         </nav>
+    </header>
+
         {% if error is defined and error is not empty %}
         <p class="error">Error : {{ error }}</p>
         {% endif %}
+        <body>
         {% block content %}{% endblock %}
-        
+        </body>
+
+
+
+
+
+
+
         <footer>METTRE UN FOOTER </footer>
     </body>
 </html>
