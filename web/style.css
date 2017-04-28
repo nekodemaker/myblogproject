@@ -15,10 +15,10 @@ body{
     background-color: black;
     width: 100%;
 }
-
 .buttonslide{
     display: flex;
     align-self: flex-start;
+    margin-top:-40px;
 }
 .close{
     display: none;
@@ -30,7 +30,6 @@ body{
 }
 #logo{
     width: 60px;
-
 }
 .link{
     display: none;
@@ -42,6 +41,7 @@ body{
     width: 70px;
 }
 /*End sidebar*/
+
 #sidebar nav {
     width: 100%;
 }
@@ -56,38 +56,38 @@ body{
     list-style-type: none;
     display: flex;
 }
-
 #main{
     display:flex;
     width:100%;
     flex-direction: column;
 }
-
 #main article{
-
     display:flex;
     align-self: center;
     flex-direction: column;
     width:100%;
+    box-shadow:
 }
-
 #main article header{
     align-self: center;
     width:80%;
+    color: gray;
 }
 #main article header h1{
     word-wrap:break-word;
+}
+#main article header a{
+    color: black;
+    text-decoration: none;
 }
 #main article .content{
     align-self: center;
     width:90%;
     margin: 1%;
 }
-
 #main article .content p{
     word-wrap: break-word;
 }
-
 #main article figure{
     display: flex;
     flex-direction: column;
@@ -96,9 +96,15 @@ body{
     width:100%;
 }
 #main article figure img{
-    border: 1px solid black;
     width:70%;
     max-width:500px;
+}
+#main article footer hr{
+    width: 70%;
+    height: 2px;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 @media screen and (min-width:641px){
@@ -113,12 +119,16 @@ body{
         align-self: center;
         flex-direction: column;
         width:45%;
-        background-color: silver;
+        background-color: #CEE3F6;
         margin: 1% 1.5%;
         border-radius: 7px;
+        font-family: 'Roboto', sans-serif;
     }
     #main article header{
         width: 90%;
+    }
+    #main article footer hr{
+        display: none;
     }
     #sidebar{
         flex-direction: row;
@@ -133,5 +143,11 @@ body{
         display: flex;
         justify-content: space-around;
         margin-left: 10%;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    #main article{
+        width: 30%;
     }
 }
