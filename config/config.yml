@@ -10,6 +10,7 @@ routes:
     changeProfilePic: 'Security:changeProfilePic'
     createArticle: 'Article:createArticle'
     showArticle: 'Article:showArticle'
+    editArticle: 'Article:editArticle'
     createComment: 'Comment:createComment'
     deleteComment: 'Comment:deleteComment'
 defaut_route: 'home'

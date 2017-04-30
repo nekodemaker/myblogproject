@@ -1,4 +1,6 @@
 window.onload = function () {
+    var errorBlock = document.querySelector('#error-block');
+    var successBlock = document.querySelector('#success-block');
     var xmlhttp = new XMLHttpRequest();
     var formLogin = document.forms["login-form"];
     var formRegister = document.forms["register-form"];
@@ -10,16 +12,20 @@ window.onload = function () {
     var authorArticleLink = document.querySelectorAll(".showProfileLink");
     var formDeleteComment = document.querySelectorAll(".delete-comment-form");
     var deleteCommentLink = document.querySelectorAll(".deleteCommentLink");
-    console.log(formShowProfile);
+    var formEditArticle = document.querySelectorAll("#edit-article-form");
+
     function submitOnLogin() {
+        xmlhttp.open("POST", "?action=login", true);
         formLogin.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
+                    successBlock.innerHTML = 'OK BIENVENUE';
+                    console.log(xmlhttp.responseText);
                 }
             };
-            xmlhttp.open("POST", "?action=login", true);
+
             xmlhttp.send();
+            return false;
         };
     };
 
@@ -82,7 +88,6 @@ window.onload = function () {
                     console.log("ok");
                 }
             };
-            console.log("here");
             xmlhttp.open("POST", "?action=changePassword", true);
             xmlhttp.send();
         };
@@ -90,19 +95,16 @@ window.onload = function () {
 
     function submitOnShowProfile() {
         for (var i = 0; i < authorArticleLink.length; i++) {
-            console.log(authorArticleLink[i].parentNode);
             authorArticleLink[i].parentNode.onsubmit = function () {
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         console.log("ok");
                     }
                 };
-                console.log("here");
                 xmlhttp.open("POST", "?action=showProfile", true);
                 xmlhttp.send();
             };
             authorArticleLink[i].onclick = function () {
-                console.log(authorArticleLink[i]);
                 this.parentElement.submit();
             };
         }
@@ -116,7 +118,6 @@ window.onload = function () {
                         console.log("ok");
                     }
                 };
-                console.log("here");
                 xmlhttp.open("POST", "?action=deleteComment", true);
                 xmlhttp.send();
             };
@@ -126,6 +127,17 @@ window.onload = function () {
         }
     };
 
+    function submitOnEditArticle() {
+        formEditArticle.onsubmit = function () {
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("ok");
+                }
+            };
+            xmlhttp.open("POST", "?action=editArticle", true);
+            xmlhttp.send();
+        };
+    };
     if (formLogin != undefined)
         submitOnLogin();
     if (formRegister != undefined)
@@ -138,9 +150,11 @@ window.onload = function () {
         submitOnCreateComment();
     if (formChangePassword != undefined)
         submitOnChangePassword();
-    if (formShowProfile != undefined) 
+    if (formShowProfile != undefined)
         submitOnShowProfile();
     if (formDeleteComment != undefined)
         submitOnDeleteComment();
-    };
+    if (formEditArticle != undefined)
+        submitOnEditArticle();
+};
 

@@ -70,7 +70,6 @@ class SecurityController extends BaseController
             if ($manager->userCheckChangePassword($_POST))
             {
                 $manager->userChangePassword($_POST);
-                //$this->redirect('editProfile');
             }
             else {
                 $error = "Invalid Format";
@@ -118,7 +117,6 @@ class SecurityController extends BaseController
                 }else{
                     echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'profilepic' => $profile_pic]);
                 }
-                //$this->redirect('home');
             }
             else {
                 $error = "That profile doesn't exist";

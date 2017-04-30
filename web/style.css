@@ -1,11 +1,7 @@
 body{
     margin: 0;
-    background: url('img/card.png');
-}
-#header{
-    display:flex;
-    flex-direction: column;
-
+    background: url('img/card.png') 50%;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* sidebar */
@@ -16,6 +12,9 @@ body{
     background-color: black;
     width: 100%;
 }
+#sidebar nav {
+    width: 100%;
+}
 .buttonslide{
     display: flex;
     align-self: flex-start;
@@ -23,11 +22,10 @@ body{
 }
 .close{
     display: none;
-
 }
 .close img, .open img{
     width: 40px;
-
+    cursor: pointer;
 }
 #logo{
     width: 60px;
@@ -40,20 +38,23 @@ body{
 }
 .link img{
     width: 70px;
+    cursor: pointer;
 }
 /*End sidebar*/
 
-#sidebar nav {
-    width: 100%;
+body h1{
+  text-align: center;
+}
+#header{
+    display:flex;
+    flex-direction: column;
 }
 #header ul{
     padding-left:0;
-
     display: flex;
     justify-content: space-around;
 }
 #header ul li{
-
     list-style-type: none;
     display: flex;
 }
@@ -66,8 +67,11 @@ body{
     display:flex;
     align-self: center;
     flex-direction: column;
-    width:100%;
-    box-shadow:
+    width:90%;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 5px 0;
+    background-color: #CEE3F6;
 }
 #main article header{
     align-self: center;
@@ -75,6 +79,7 @@ body{
     color: gray;
 }
 #main article header h1{
+    text-align: none;
     word-wrap:break-word;
 }
 #main article header a{
@@ -99,15 +104,140 @@ body{
 #main article figure img{
     width:70%;
     max-width:500px;
+    max-height:200px;
 }
-#main article footer hr{
-    width: 70%;
-    height: 2px;
-    background-color: black;
-    border: 1px solid black;
+#main article footer{
+    display: flex;
+    align-self: center;
+    padding-bottom: 10px;
+}
+#main article footer a{
+    background-color: #44D586;
+    padding: 5px;
     border-radius: 5px;
+    text-decoration: none;
+    color: black;
 }
 
+/* CreateArticle, EditArticle, Login & Register Form */
+#form{
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    margin-top: 20px;
+}
+#blockForm{
+    border: 1px solid gray;
+    border-radius: 5px;
+    width:80%;
+    display:flex;
+    align-self: center;
+    flex-direction: column;
+}
+#form form{
+    background-color: white;
+    text-align: center;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 20px 0;
+}
+#form h3{
+    text-align: center;
+    background-color: #44D586;
+    padding: 15px 0;
+    font-size: 25px;
+    margin: 0;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+#form form input{
+    width: 60%;
+    font-size: 15px;
+    padding-left: 15px;
+    margin: 5px 0;
+    border-radius: 7px;
+    background-color: #E1E1E1;
+    border: none;
+}
+#form form input[type='submit']{
+    padding: 0;
+    width: 35%;
+    background-color: #44D586;
+}
+
+/* Profile */
+#profile{
+    display:flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px 10% 0 10%;
+    padding-top: 10px;
+    text-align: center;
+    background-color: #F1F1F1;
+    border: 1px solid gray;
+    border-radius: 10px;
+    align-items: center;
+}
+#profile span{
+    font-weight: bold;
+    color:  #44D586;
+    text-decoration: underline;
+}
+#profile img{
+    width: 60%;
+    height: 60%;
+}
+
+/* Article (& Comments) */
+section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+section #article, section #comments{
+    width: 85%;
+    background-color: #CEE3F6;
+    margin: 5px 0;
+    padding: 10px 2.5%;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+section #article #title, section #comments #title, section #title{
+    font-weight: bold;
+    color: #44D586;
+    text-decoration: underline;
+}
+section #article div, section #comments .comment{
+    text-align: left;
+}
+section #article div .text, section #comments .comment .text{
+    color: gray;
+    text-decoration: underline;
+}
+section #article div #showProfile{
+    color: #ffbb33;
+}
+section #comments .comment form div{
+    color: red;
+    text-align: center;
+    cursor: pointer;
+}
+section #title{
+    font-size: 14px;
+}
+section form input{
+    border: 1px solid black;
+    background-color: #E1E1E1;
+    border-radius: 7px;
+}
+section form input[type='submit']{
+    background-color: #44D586;
+}
+
+/* media queries */
 @media screen and (min-width:641px){
     #main{
         display: flex;
@@ -123,7 +253,6 @@ body{
         background-color: #CEE3F6;
         margin: 1% 1.5%;
         border-radius: 7px;
-        font-family: 'Roboto', sans-serif;
     }
     #main article header{
         width: 90%;
@@ -145,6 +274,29 @@ body{
         justify-content: space-around;
         margin-left: 10%;
     }
+    /* CreateArticle, Login & Register Form */
+    #form{
+        margin-top: 50px;
+    }
+    #blockForm{
+        width: 50%;
+    }
+
+    /* Profile */
+    #profile{
+        width: 60%;
+        margin: 20px 30% 0 20%;
+        padding-top: 10px;
+    }
+    #profile img{
+        width:50%;
+        height:50%;
+    }
+    /* Article (& Comments) */
+    section #article, section #comments{
+        width: 70%;
+        padding: 10px 5%;
+    }
 }
 
 @media screen and (min-width: 1025px){
@@ -152,15 +304,68 @@ body{
         width: 30%;
     }
     #logo{
-      margin: 0.5% 5%;
+        margin: 0.5% 5%;
     }
     .link{
-      margin: 0;
-      display: flex;
-      justify-content: flex-end;
-      width: 90%;
+        margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        width: 90%;
     }
     .link a{
-      margin: 0 10%;
+        margin: 0 10%;
+    }
+    /* CreateArticle, Login & Register Form */
+    #form{
+        margin-top: 100px;
+    }
+    #blockForm{
+        width: 45%;
+    }
+    /* Profile */
+    #profile{
+        width: 50%;
+        margin: 20px 25% 0 25%;
+        padding-top: 10px;
+    }
+    #profile img{
+        width:40%;
+        height:40%;
+    }
+    /* Article (& Comments) */
+    section #article, section #comments{
+        width: 55%;
+        padding: 10px 6%;
+    }
+}
+
+@media screen and (min-width: 1441px){
+    #logo{
+        width: 50px;
+    }
+    .link img{
+        width: 55px;
+    }
+    /* CreateArticle, Login & Register Form */
+    #form{
+        margin-top: 120px;
+    }
+    #blockForm{
+        width: 30%;
+    }
+    /* Profile */
+    #profile{
+        width: 40%;
+        margin: 20px 30% 0 30%;
+        padding-top: 10px;
+    }
+    #profile img{
+        width:35%;
+        height:35%;
+    }
+    /* Article (& Comments) */
+    section #article, section #comments{
+        width: 45%;
+        padding: 10px 7.5%;
     }
 }

@@ -46,20 +46,14 @@
             </div>
         </nav>
     </header>
-
+        <div id="error-block"></div>
+        <div id="success-block"></div>
         {% if error is defined and error is not empty %}
+
         <p class="error">Error : {{ error }}</p>
         {% endif %}
         <body>
         {% block content %}{% endblock %}
-        </body>
-
-
-
-
-
-
-
         <footer>METTRE UN FOOTER </footer>
     </body>
 </html>

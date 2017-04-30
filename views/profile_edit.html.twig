@@ -1,25 +1,30 @@
-{% extends 'layout.html.twig' %}
+ {% extends 'layout.html.twig' %}
 
-{% block content %}
-PROFILE<br>
-Your username : {{name}}<br>
-Your mail : {{user['email']}}<br>
-Your pic :<br/>
-<img src={{profilepic}} alt="">
-<br/>
-Change password?
-<form name="change-password-form" method="POST" action="?action=changePassword">
-    Old Password : <input type="password" name="old-password"><br>
-    New Password : <input type="password" name="new-password"><br>
-    <input type="submit">
-</form>
+    {% block content %}
+    <section id="editProfile">
+        <div id="infos">
+            <span id="title">PROFILE</span><br>
+            <span class="text">Your username :</span> {{name}}<br>
+            <span class="text">Your mail :</span> {{user['email']}}<br>
+            <span class="text">Your pic :</span><br/>
+            <img src={{profilepic}} alt="">
+            <br/>
+        </div>
+        <div id="edit">
+            <span id="title">Change password?</span>
+            <form name="change-password-form" method="POST" action="?action=changePassword">
+                <label for="old-password">Old Password : </label><input type="password" id="old-password" name="old-password"><br>
+                <label for="new-password">New Password : </label><input type="password" id="new-password" name="new-password"><br>
+                <input type="submit">
+            </form>
 
-Upload photo?
-<form method="POST" action="?action=changeProfilePic" enctype="multipart/form-data">
-     <label for="mon_fichier">Photo de profil (tous formats | max. 1 Mo) :</label><br />
-     <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-     <input type="file" name="my-pic" id="my-pic" /><br />
-     <input type="submit" name="submit" value="Envoyer" />
-</form>
-
-{% endblock %}
+            <span id="title">Upload photo?</span>
+            <form method="POST" action="?action=changeProfilePic" enctype="multipart/form-data">
+                 <label for="mon_fichier">Photo de profil (tous formats | max. 1 Mo) :</label><br />
+                 <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                 <input type="file" name="my-pic" id="my-pic" /><br />
+                 <input type="submit" name="submit" value="Envoyer" />
+            </form>
+        </div>
+    </section>
+    {% endblock %}

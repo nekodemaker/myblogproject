@@ -65,6 +65,7 @@ class UserManager
     
     public function userCheckLogin($data)
     {
+
         if (empty($data['username']) OR empty($data['password']))
             return false;
         $user = $this->getUserByUsername($data['username']);

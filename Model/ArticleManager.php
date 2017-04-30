@@ -18,12 +18,12 @@ class ArticleManager
     {
         $this->DBManager = DBManager::getInstance();
     }
-
+    
     public function createArticleCheck($data)
     {
         return  !(empty($data['title-article']) OR empty($data['text-article']));
     }
-
+    
     public function addArticlePictureCheck($file){
         $extensions = array( 'image/jpg' , 'image/jpeg' , 'image/gif' , 'image/png' );
         if($file["article-pic"]["error"] != 0) return false;
@@ -31,11 +31,11 @@ class ArticleManager
         if (in_array($file['article-pic']['type'],$extensions)) return true;
         return false;
     }
-
+    
     public function addArticlePictureInUserDirectory($file,$file_extension,$id_picture){
         rename($file["article-pic"]["tmp_name"],"./users/".$_SESSION['username']."/".$id_picture.".".$file_extension);
     }
-
+    
     public function createArticle($data,$file)
     {
         if($this->addArticlePictureCheck($file)){
@@ -55,7 +55,7 @@ class ArticleManager
         ]);
         $this->DBManager->do_query_db($query,$d);
     }
-
+    
     public function getAllArticles(){
         $data = $this->DBManager->findAll("SELECT * FROM articles");
         return $data;
@@ -69,12 +69,23 @@ class ArticleManager
             return true;
         }else{
             return false;
-        } 
+        }
     }
     
     public function getArticle($id_article){
         $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE id = :id",
         ['id' => $id_article]);
         return $data;
+    }
+    
+    public function editArticle($data){
+        var_dump("here");
+        $query="update `articles` set `title_article`=:title,`text_article`=:text where `id`= :id";
+        $d=[
+        'title'=> $data['title-article'],
+        'text'=> $data['text-article'],
+        'id'=> $data['id-article'],
+        ];
+        $res=$this->DBManager->do_query_db($query,$d);
     }
 }
