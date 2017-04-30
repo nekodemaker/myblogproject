@@ -14,7 +14,11 @@
             </form> le <time datetime="2012-03-30T13:37:00Z" pubdate="pubdate">{{ article.date_article }}</time>
             </header>
             <figure>
+                {% if article.picture_article == "nothing" %}
                 <img src="web/img/fairytailteam.png" alt="" />
+                {% else %}
+                <img src={{article.picture_article}} alt="" />
+                {% endif %}
                 <figcaption></figcaption>
             </figure>
             <div class="content">
