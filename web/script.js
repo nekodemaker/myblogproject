@@ -8,6 +8,8 @@ window.onload = function () {
     var formChangePassword = document.forms["change-password-form"];
     var formShowProfile = document.querySelectorAll(".show-profile-form");
     var authorArticleLink = document.querySelectorAll(".showProfileLink");
+    var formDeleteComment = document.querySelectorAll(".delete-comment-form");
+    var deleteCommentLink = document.querySelectorAll(".deleteCommentLink");
     console.log(formShowProfile);
     function submitOnLogin() {
         formLogin.onsubmit = function () {
@@ -99,27 +101,46 @@ window.onload = function () {
                 xmlhttp.open("POST", "?action=showProfile", true);
                 xmlhttp.send();
             };
-            //authorArticleLink[i].parentElement.submit();
-            authorArticleLink[i].onclick=function(){
+            authorArticleLink[i].onclick = function () {
                 console.log(authorArticleLink[i]);
-               this.parentElement.submit();
+                this.parentElement.submit();
             };
         }
-        };
-        if (formLogin != undefined)
-            submitOnLogin();
-        if (formRegister != undefined)
-            submitOnRegister();
-        if (formCreateArticle != undefined)
-            submitOnCreateArticle();
-        if (buttonsShowArticle != undefined)
-            clickOnShowArticle();
-        if (formCreateComment != undefined)
-            submitOnCreateComment();
-        if (formChangePassword != undefined)
-            submitOnChangePassword();
-        if (formShowProfile != undefined){
-            submitOnShowProfile();
+    };
+
+    function submitOnDeleteComment() {
+        for (var i = 0; i < deleteCommentLink.length; i++) {
+            deleteCommentLink[i].parentNode.onsubmit = function () {
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log("ok");
+                    }
+                };
+                console.log("here");
+                xmlhttp.open("POST", "?action=deleteComment", true);
+                xmlhttp.send();
+            };
+            deleteCommentLink[i].onclick = function () {
+                this.parentElement.submit();
+            };
         }
+    };
+
+    if (formLogin != undefined)
+        submitOnLogin();
+    if (formRegister != undefined)
+        submitOnRegister();
+    if (formCreateArticle != undefined)
+        submitOnCreateArticle();
+    if (buttonsShowArticle != undefined)
+        clickOnShowArticle();
+    if (formCreateComment != undefined)
+        submitOnCreateComment();
+    if (formChangePassword != undefined)
+        submitOnChangePassword();
+    if (formShowProfile != undefined) 
+        submitOnShowProfile();
+    if (formDeleteComment != undefined)
+        submitOnDeleteComment();
     };
 

@@ -39,15 +39,27 @@ class CommentManager
         return $data;
     }
     
-    public function commentCheck($id_comment)
+    public function commentCheck($post)
     {
+        if(empty($post['id-comment'])){
+            return false;
+        }
         $data = $this->DBManager->findOneSecure("SELECT * FROM comments WHERE id = :id",
-        ['id' => $id_comment]);
+        ['id' => $post['id-comment']]);
         if(count($data['id'])!=0){
             return true;
         }else{
             return false;
         }
+    }
+    
+    public function deleteComment($data)
+    {
+        $query="DELETE FROM comments WHERE id=:id";
+        $d=([
+        'id'=> $data['id-comment'],
+        ]);
+        $this->DBManager->do_query_db($query,$d);
     }
     
 }

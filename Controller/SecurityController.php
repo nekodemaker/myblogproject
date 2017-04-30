@@ -116,7 +116,7 @@ class SecurityController extends BaseController
                 if(!empty($_SESSION['username'])){
                     echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'name' => $_SESSION['username'],'profilepic' => $profile_pic]);
                 }else{
-                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow]);
+                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'profilepic' => $profile_pic]);
                 }
                 //$this->redirect('home');
             }
