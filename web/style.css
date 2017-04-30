@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background: url('img/card.png') 50%;
+    background: url('assets/card.png') 50%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -173,37 +173,40 @@ body h1{
     margin: 20px 10% 0 10%;
     padding-top: 10px;
     text-align: center;
-    background-color: #F1F1F1;
+    background-color: #CEE3F6;
     border: 1px solid gray;
     border-radius: 10px;
     align-items: center;
 }
-#profile span{
+#profile #title{
     font-weight: bold;
     color:  #44D586;
     text-decoration: underline;
 }
 #profile img{
     width: 60%;
-    height: 60%;
 }
 
 /* Article (& Comments) */
 section{
+    margin-top: 30px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-section #article, section #comments{
+section #article #imgArticle{
+    width: 70%;
+}
+section #article, section #comments, /* id page = EditProfile */ #editProfile div{
     width: 85%;
     background-color: #CEE3F6;
     margin: 5px 0;
     padding: 10px 2.5%;
     text-align: center;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 7px;
 }
 section #article #title, section #comments #title, section #title{
     font-weight: bold;
@@ -212,8 +215,9 @@ section #article #title, section #comments #title, section #title{
 }
 section #article div, section #comments .comment{
     text-align: left;
+    align-content: flex-start;
 }
-section #article div .text, section #comments .comment .text{
+section #article div .text, section #comments .comment .text,  /* id page = Profile */ #profile .text ,/* id page = EditProfile */ #editProfile #infos .text{
     color: gray;
     text-decoration: underline;
 }
@@ -225,6 +229,12 @@ section #comments .comment form div{
     text-align: center;
     cursor: pointer;
 }
+section #comments .comment hr{
+    border-color: black;
+}
+section #comments .comment #margin{
+    margin: 0 5%;
+}
 section #title{
     font-size: 14px;
 }
@@ -232,12 +242,21 @@ section form input{
     border: 1px solid black;
     background-color: #E1E1E1;
     border-radius: 7px;
+    padding: 3px;
+    font-size: 13px;
 }
 section form input[type='submit']{
     background-color: #44D586;
 }
+/* Edit Profile */
+#editProfile #title{
+    font-size: 16px;
+}
+#editProfile #edit form{
+    margin: 5px 0;
+}
 
-/* media queries */
+/* Media Queries */
 @media screen and (min-width:641px){
     #main{
         display: flex;
@@ -290,10 +309,9 @@ section form input[type='submit']{
     }
     #profile img{
         width:50%;
-        height:50%;
     }
     /* Article (& Comments) */
-    section #article, section #comments{
+    section #article, section #comments, #editProfile div{
         width: 70%;
         padding: 10px 5%;
     }
@@ -330,10 +348,9 @@ section form input[type='submit']{
     }
     #profile img{
         width:40%;
-        height:40%;
     }
     /* Article (& Comments) */
-    section #article, section #comments{
+    section #article, section #comments, #editProfile div{
         width: 55%;
         padding: 10px 6%;
     }
@@ -361,10 +378,9 @@ section form input[type='submit']{
     }
     #profile img{
         width:35%;
-        height:35%;
     }
     /* Article (& Comments) */
-    section #article, section #comments{
+    section #article, section #comments, #editProfile div{
         width: 45%;
         padding: 10px 7.5%;
     }

@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\CommentManager;
+use Model\ArticleManager;
 
 class CommentController extends BaseController
 {
@@ -17,13 +18,16 @@ class CommentController extends BaseController
                 if ($manager->createCommentCheck($_POST))
                 {
                     $manager->createComment($_POST);
+                    $commentsToShow = $manager->getComments($_POST['id-article']);
+                    $articleManager = ArticleManager::getInstance();
+                    $articleToShow=$articleManager->getArticle($_POST['id-article']);
                     //$this->redirect('home');
                }
                else {
                    $error = "One of things is empty";
                 }
             }
-            echo $this->renderView('article.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
+            echo $this->renderView('article.html.twig', ['error' => $error,'name' => $_SESSION['username'],'articleToShow' => $articleToShow,'commentsToShow' => $commentsToShow]);
         }else{
             $this->redirect('home');
         }
@@ -39,13 +43,15 @@ class CommentController extends BaseController
                 if ($manager->commentCheck($_POST))
                 {
                     $manager->deleteComment($_POST);
-                    //$this->redirect('home');
+                    $commentsToShow = $manager->getComments($_POST['id-article']);
+                    $articleManager = ArticleManager::getInstance();
+                    $articleToShow=$articleManager->getArticle($_POST['id-article']);
                }
                else {
                    $error = "One of things is empty";
                 }
             }
-            echo $this->renderView('article.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
+            echo $this->renderView('article.html.twig', ['error' => $error,'name' => $_SESSION['username'],'articleToShow' => $articleToShow,'commentsToShow' => $commentsToShow]);
         }else{
             $this->redirect('home');
         }

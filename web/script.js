@@ -19,8 +19,6 @@ window.onload = function () {
         formLogin.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    successBlock.innerHTML = 'OK BIENVENUE';
-                    console.log(xmlhttp.responseText);
                 }
             };
 
@@ -33,7 +31,6 @@ window.onload = function () {
         formRegister.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
                 }
             };
             xmlhttp.open("POST", "?action=register", true);
@@ -46,7 +43,6 @@ window.onload = function () {
         formCreateArticle.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
                 }
             };
             xmlhttp.open("POST", "?action=createArticle", true);
@@ -59,7 +55,6 @@ window.onload = function () {
             buttonsShowArticle[i].onsubmit = function () {
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log("ok");
                     }
                 };
                 xmlhttp.open("POST", "?action=showArticle", true);
@@ -72,7 +67,6 @@ window.onload = function () {
         formCreateComment.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
                 }
             };
             console.log("here");
@@ -85,7 +79,6 @@ window.onload = function () {
         formCreateComment.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
                 }
             };
             xmlhttp.open("POST", "?action=changePassword", true);
@@ -98,7 +91,6 @@ window.onload = function () {
             authorArticleLink[i].parentNode.onsubmit = function () {
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log("ok");
                     }
                 };
                 xmlhttp.open("POST", "?action=showProfile", true);
@@ -115,7 +107,6 @@ window.onload = function () {
             deleteCommentLink[i].parentNode.onsubmit = function () {
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log("ok");
                     }
                 };
                 xmlhttp.open("POST", "?action=deleteComment", true);
@@ -131,7 +122,6 @@ window.onload = function () {
         formEditArticle.onsubmit = function () {
             xmlhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log("ok");
                 }
             };
             xmlhttp.open("POST", "?action=editArticle", true);

@@ -44,11 +44,10 @@ class ArticleController extends BaseController
                 $articleToShow=$manager->getArticle($_GET['id_article']);
                 
                 if(!empty($_SESSION['username'])){
-                    echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username'],'commentsToShow' => $commentsToShow]);    
+                    echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'name' => $_SESSION['username'],'commentsToShow' => $commentsToShow]);
                 }else{
                     echo $this->renderView('article.html.twig', ['articleToShow' => $articleToShow,'commentsToShow' => $commentsToShow]);
                 }
-                //$this->redirect('home');
             }
             else {
                 $error = "That article doesn't exist";
@@ -59,13 +58,7 @@ class ArticleController extends BaseController
         }
     }
     
-    public function createCommentAction()
-    {
-        $error = "That article doesn't exist";
-        echo $this->renderView('article.html.twig', ['error' => $error]);
-    }
-
-        public function editArticleAction()
+    public function editArticleAction()
     {
         $error = '';
         if(!empty($_SESSION['user_id'])){
