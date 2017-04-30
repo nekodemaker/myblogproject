@@ -52,7 +52,10 @@ class SecurityController extends BaseController
     {
         $error = '';
         if(!empty($_SESSION['user_id'])){
-            echo $this->renderView('profile_edit.html.twig', ['name' => $_SESSION['username']]);
+            $manager = UserManager::getInstance();
+            $user=$manager->userGetProfile($_SESSION['username']);
+            $profile_pic=$manager->getUserProfilePic($_SESSION['username']);
+            echo $this->renderView('profile_edit.html.twig', ['name' => $_SESSION['username'],'user' => $user,'profilepic' => $profile_pic]);
         }else{
             $this->redirect('home');
         }
@@ -77,6 +80,26 @@ class SecurityController extends BaseController
         echo $this->renderView('profile_edit.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
     }
     
+
+    public function changeProfilePicAction()
+    {
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $manager = UserManager::getInstance();
+            if ($manager->userCheckProfilePic($_FILES))
+            {
+                $manager->userChangeProfilePic($_FILES);
+                //$this->redirect('editProfile');
+            }
+            else {
+                $error = "Invalid Format";
+            }
+        }
+        
+        echo $this->renderView('profile_edit.html.twig', ['error' => $error,'name' => $_SESSION['username']]);
+    }
+    
     public function showProfileAction()
     {
         
@@ -88,8 +111,10 @@ class SecurityController extends BaseController
             {
                 $user=$manager->userGetProfile($_POST['author-name']);
                 $profileToShow=[$user['username'],$user['email']];
+                $profile_pic=$manager->getUserProfilePic($user['username']);
+
                 if(!empty($_SESSION['username'])){
-                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'name' => $_SESSION['username']]);
+                    echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow,'name' => $_SESSION['username'],'profilepic' => $profile_pic]);
                 }else{
                     echo $this->renderView('profile.html.twig', ['profileToShow' => $profileToShow]);
                 }

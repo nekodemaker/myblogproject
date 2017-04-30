@@ -58,6 +58,9 @@ class UserManager
         'mail'=> $data['email'],
         ]);
         $this->DBManager->do_query_db($query,$d);
+        mkdir("users/".$data['username']);
+        mkdir("users/".$data['username']."/profile_pic");
+        rename("users/default_pic.png","users/".$data['username']."/profile_pic".$data['username'].".".$picExtension);
     }
     
     public function userCheckLogin($data)
@@ -110,6 +113,27 @@ class UserManager
         'userid'=> $_SESSION['user_id'],
         ];
         $res=$this->DBManager->do_query_db($query,$d);
+    }
+    
+    public function userCheckProfilePic($data){
+        $extensions = array( 'image/jpg' , 'image/jpeg' , 'image/gif' , 'image/png' );
+        
+        if ($data['my-pic']['size'] > 1048576) return false;
+        if ( in_array($data['my-pic']['type'],$extensions)) return true;
+        return false;
+    }
+    
+    public function userChangeProfilePic($data){
+        $profile_pic_path="./users/".$_SESSION['username']."/profile_pic/";
+        $picExtension=pathinfo($data["my-pic"]["name"],PATHINFO_EXTENSION);
+        $array_user_pic=scandir($profile_pic_path);
+        unlink($profile_pic_path.$array_user_pic[2]);
+        rename($data["my-pic"]["tmp_name"],$profile_pic_path.$_SESSION['username'].".".$picExtension);
+    }
+    
+    public function getUserProfilePic($username){
+        $profile_pic_array=scandir("./users/".$username."/profile_pic/");
+        return "./users/".$username."/profile_pic/".$profile_pic_array[2];
     }
     
     public function userProfileCheck($username)

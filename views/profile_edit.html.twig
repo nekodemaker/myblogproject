@@ -1,7 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-PROFILE OF {{name}}
+PROFILE<br>
+Your username : {{name}}<br>
+Your mail : {{user['email']}}<br>
+Your pic :<br/>
+<img src={{profilepic}} alt="">
 <br/>
 Change password?
 <form name="change-password-form" method="POST" action="?action=changePassword">
@@ -10,10 +14,12 @@ Change password?
     <input type="submit">
 </form>
 
-Change mail?
-<form name="change-mail-form" method="POST">
-    Old mail : <input type="email" name="old-mail"><br>
-    New mail : <input type="email" name="new-mail"><br>
-    <input type="submit">
+Upload photo?
+<form method="POST" action="?action=changeProfilePic" enctype="multipart/form-data">
+     <label for="mon_fichier">Photo de profil (tous formats | max. 1 Mo) :</label><br />
+     <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+     <input type="file" name="my-pic" id="my-pic" /><br />
+     <input type="submit" name="submit" value="Envoyer" />
 </form>
+
 {% endblock %}
