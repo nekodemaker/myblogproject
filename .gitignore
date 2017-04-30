@@ -5,5 +5,3 @@
 /composer.phar
 /cache
 !/cache/twig/.gitkeep
-!/users
-/users/*
