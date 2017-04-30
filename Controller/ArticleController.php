@@ -17,7 +17,7 @@ class ArticleController extends BaseController
                 $manager = ArticleManager::getInstance();
                 if ($manager->createArticleCheck($_POST))
                 {
-                    $manager->createArticle($_POST);
+                    $manager->createArticle($_POST,$_FILES);
                     $this->redirect('home');
                 }
                 else {
