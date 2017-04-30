@@ -4,17 +4,17 @@
     <section id="editProfile">
         <div id="infos">
             <span id="title">PROFILE</span><br>
-            <span class="text">Your username :</span> {{name}}<br>
-            <span class="text">Your mail :</span> {{user['email']}}<br>
-            <span class="text">Your pic :</span><br/>
+            <span class="text">Ton pseudo :</span> {{name}}<br>
+            <span class="text">Ton adresse mail :</span> {{user['email']}}<br>
+            <span class="text">Ta photo de profil :</span><br/>
             <img src={{profilepic}} alt="">
             <br/>
         </div>
         <div id="edit">
             <span id="title">Change password?</span>
             <form name="change-password-form" method="POST" action="?action=changePassword">
-                <label for="old-password">Old Password : </label><input type="password" id="old-password" name="old-password"><br>
-                <label for="new-password">New Password : </label><input type="password" id="new-password" name="new-password"><br>
+                <label for="old-password">Ancien mot de passe : </label><input type="password" id="old-password" name="old-password"><br>
+                <label for="new-password">Nouveau mot de passe : </label><input type="password" id="new-password" name="new-password"><br>
                 <input type="submit">
             </form>
 

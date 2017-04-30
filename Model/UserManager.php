@@ -60,7 +60,7 @@ class UserManager
         $this->DBManager->do_query_db($query,$d);
         mkdir("users/".$data['username']);
         mkdir("users/".$data['username']."/profile_pic");
-        rename("users/default_pic.png","users/".$data['username']."/profile_pic".$data['username'].".".$picExtension);
+        copy("users/default_pic.png","users/".$data['username']."/profile_pic/".$data['username'].".png");
     }
     
     public function userCheckLogin($data)

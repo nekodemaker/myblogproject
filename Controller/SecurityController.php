@@ -89,7 +89,6 @@ class SecurityController extends BaseController
             if ($manager->userCheckProfilePic($_FILES))
             {
                 $manager->userChangeProfilePic($_FILES);
-                //$this->redirect('editProfile');
             }
             else {
                 $error = "Invalid Format";
